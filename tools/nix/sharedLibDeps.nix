@@ -1,5 +1,6 @@
 {
   pkgs ? import ./pkgs.nix { },
+  withLief ? true,
   withQuic ? false,
   withSQLite ? true,
   withSSL ? true,
@@ -32,6 +33,9 @@
     }
   }/pkgs/by-name/nb/nbytes/package.nix" { };
 }
+// (pkgs.lib.optionalAttrs withLief {
+  inherit (pkgs) lief;
+})
 // (pkgs.lib.optionalAttrs withQuic {
   inherit (pkgs)
     nghttp3
